@@ -1,0 +1,42 @@
+body {
+    margin: 0;
+    padding: 0;
+    background-color:blue;
+    display: flex;
+    flex-direction: column;
+    /* justify-content: space-between; */
+    min-height: 100vh;
+    
+}
+
+.calBody{
+    margin: auto; /*centers horizontaly */
+    height: 400px;
+    width: 250px;
+    background-color: rgb(214, 214, 150);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.calBody > div{
+    height: 100px;
+    /* margin: 3px; */
+    display: flex;
+    justify-content: space-between;
+}
+button{
+     /* max-width: 50px;
+    max-height: 50px;  */
+    flex: 1;
+    margin: 6PX;
+    border: solid gray 3px;
+    border-radius: 5px;
+}
+.screen{    
+    background-color: aquamarine;
+    border: solid black;
+    border-radius: 20px;
+    margin: 10px;
+    
+}
