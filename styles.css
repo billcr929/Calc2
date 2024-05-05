@@ -19,24 +19,40 @@ body {
     justify-content: space-between;
 }
 
-.calBody > div{
-    height: 100px;
-    /* margin: 3px; */
+.btnHolder{
+    flex: 5;
+    /* height: 100px; */
+    margin: 3px 5px 3px 5px;
     display: flex;
-    justify-content: space-between;
+    flex-direction: column;
+    padding: 10;
+}
+.btnHolder>div{
+    flex: 1;
+    display: flex;
 }
 button{
      /* max-width: 50px;
     max-height: 50px;  */
     flex: 1;
-    margin: 6PX;
+    margin: 3PX;
     border: solid gray 3px;
     border-radius: 5px;
+    font-size: larger;
 }
 .screen{    
     background-color: aquamarine;
     border: solid black;
     border-radius: 20px;
-    margin: 10px;
-    
+    margin: 5px;
+    display: flex;
+    flex-direction: row-reverse;   
+    align-items: center; 
+    flex: 1;
+}
+
+#displayText{
+    margin: 0;
+    font-size: xx-large;
+    margin-right: 10px;
 }
