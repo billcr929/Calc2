@@ -1,47 +1,84 @@
 btns = document.querySelectorAll('button');
 outPutText = document.getElementById('displayText')
 console.log(btns);
-let numString = '0';
+let numStringActive = '0';
+let numStringHold = '';
+let operatorActive = '';
+
+document.addEventListener('keydown',(event)=>{
+    console.log(event.key);
+    //add in function to do all the math in the btn listener
+    //also create a bool for the decimal point. There can only be 1!!
+
+})
 
 btns.forEach(btn => {
     btn.addEventListener('click', () => {
         // console.log(btn.id);
 
-        console.log(numString);
+        // the following code checks the className and compares it to 'operator' or 'number'
+        // it then changes the corresponding variable if neccessary 
+        if (operatorActive === '' && btn.className == 'operator') {
+            console.log('op time!');
+            numStringHold = numStringActive;
+            numStringActive = '';
 
-
-        switch (btn.id) {
-            case 'divide': console.log(btn.id); break;
-            case 'multiply': console.log(btn.id); break;
-            case 'add': console.log(btn.id); break;
-            case 'subtract': console.log(btn.id); break;
-            case 'equal': {console.log(btn.id);   break;}
-            case 'clear': {
-                console.log(btn.id);
-                numString = '0';
-                break;
-            }
-            case 'dec':{
-                if(numString === '0') {numString='0.'}
-                break;
-            }
-
-            default: {
-                console.log('default');
-                if (numString === '0') {
-                    numString = btn.innerText
-                }
-                else { numString = numString + btn.id; }
+            switch (btn.id) {
+                case 'divide': operatorActive = btn.innerText; break;
+                case 'multiply': operatorActive = btn.innerText; break;
+                case 'add': operatorActive = btn.innerText; break;
+                case 'subtract': operatorActive = btn.innerText; break;
 
             }
+        } else if(btn.className === 'number'){
+            console.log(btn.innerText);
+                    if (numStringActive === '0') {
+                        numStringActive = btn.innerText
+                    }
+                    else { numStringActive = numStringActive + btn.id; }
+
         }
 
-        outPutText.innerText = numString;
 
 
+            switch (btn.id) {
+                case 'equal': { letsDoMath(); break; }
+                case 'clear': {
+                    console.log(btn.id);
+                    numStringActive = '0';
+                    numStringHold = ''
+                    operatorActive = ''
+                    break;
+                }
+                case 'dec': {
+                    if (numStringActive === '0') { numStringActive = '0.' }
+                    else{numStringActive=numStringActive+'.';}
+                    break;
+                }
+            }
 
-
-
-    })
+            outPutText.innerText = numStringHold + operatorActive + numStringActive;
+        })
 
 });
+
+function letsDoMath(){
+    console.log(operatorActive);
+    if (operatorActive=='+'){
+        numStringActive = +numStringActive + +numStringHold;
+    }else if (operatorActive=='-'){
+        numStringActive = +numStringActive - +numStringHold;
+    }else if (operatorActive =='*'){
+        console.log(operatorActive);
+        numStringActive = parseFloat(numStringActive) * parseFloat(numStringHold);
+    }else if(operatorActive=='/'){
+        if(numStringActive=='0'){
+            numStringHold='';
+            operatorActive=''
+            numStringActive = 'divide by ZERO dickhead'; return;}
+        else{numStringActive = +numStringActive / +numStringHold;}
+    }
+
+    numStringHold='';
+    operatorActive=''
+}
